@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gender Reveal Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gender Reveal Quiz</h1>
+    <div id="game">
+        <!-- Questions will be inserted here -->
+    </div>
+    <button onclick="checkAnswers()">Reveal the Gender</button>
+
+    <script>
+        var questions = [
+            { question: 'Quels sont les prénoms des futurs parents ?', answer: 'Cyril et Laydyvine' },
+            { question: 'Quelle est la date de mariage de Cyril et Laydyvine ?', answer: '16/08/2013' },
+            { question: 'Où est-ce que Cyril et Laydyvine se sont rencontrés pour la première fois ?', answer: 'Marcq en Baroeul' },
+            { question: 'Quelle est la destination de voyage préférée de Cyril et Laydyvine ?', answer: 'Les montagnes' },
+            { question: 'Quel est le premier animal de compagnie que Cyril et Laydyvine ont eu ensemble ?', answer: 'Chien' },
+            { question: 'Quel est le prénom de la mère de Cyril ?', answer: 'Martine' },
+            { question: 'Quel est le prénom du père de Laydyvine ?', answer: 'Pascal' },
+            { question: 'Dans quelle ville Cyril et Laydyvine ont-ils acheté leur première maison ?', answer: 'Saint-Dizier' },
+            { question: 'Quelle est la série télé préférée de Cyril ?', answer: 'Doctor Who' },
+            { question: 'Quel est le troisième prénom de Laydyvine ?', answer: 'Louise' }
+        ];
+
+        var gameElement = document.getElementById('game');
+
+        questions.forEach(function(question, index) {
+            var questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+
+            var questionText = document.createElement('p');
+            questionText.textContent = question.question;
+            questionElement.appendChild(questionText);
+
+            var answerInput = document.createElement('input');
+            answerInput.setAttribute('id', 'answer' + index);
+            questionElement.appendChild(answerInput);
+
+            gameElement.appendChild(questionElement);
+        });
+
+        function checkAnswers() {
+            var correctAnswers = 0;
+
+            questions.forEach(function(question, index) {
+                var answer = document.getElementById('answer' + index).value;
+                if (answer.toLowerCase() === question.answer.toLowerCase()) {
+                    correctAnswers++;
+                }
+            });
+
+            if (correctAnswers === questions.length) {
+                alert('Félicitations ! Le sexe du bébé est une fille.');
+            } else {
+                alert('Certaines réponses sont incorrectes. Essayez encore !');
+            }
+        }
+    </script>
+</body>
+</html>
